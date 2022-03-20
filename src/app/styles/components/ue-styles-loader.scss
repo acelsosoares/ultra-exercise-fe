@@ -1,0 +1,128 @@
+// -------------------
+// Ajax loader
+// -------------------
+$color1: $loaderColor1;
+$color2: $loaderColor2;
+
+.ue-loader {
+  display: table;
+  margin: 20px auto;
+  width: 150px;
+  text-align: center;
+}
+.ue-loader-label {
+  font-size: 1rem;
+  color: #333;
+}
+.ue-loader-wheel {
+  display: block;
+  margin: 0 auto;
+  $rotationTime: 2s;
+  $fadingTime: 1s; //To be perfect this should be 1s
+  border: 12px solid #f3f3f3;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spinLoader $rotationTime linear infinite, borderTopLoader $fadingTime 0.75s linear infinite,
+    borderRightLoader $fadingTime 0.5s linear infinite, borderBottomLoader $fadingTime 0.25s linear infinite,
+    borderLeftLoader $fadingTime linear infinite;
+}
+@keyframes spinLoader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes borderTopLoader {
+  0% {
+    border-top-color: $color2;
+  }
+  75% {
+    border-top-color: $color1;
+  }
+  100% {
+    border-top-color: $color2;
+  }
+}
+@keyframes borderRightLoader {
+  0% {
+    border-right-color: $color2;
+  }
+  75% {
+    border-right-color: $color1;
+  }
+  100% {
+    border-right-color: $color2;
+  }
+}
+@keyframes borderBottomLoader {
+  0% {
+    border-bottom-color: $color2;
+  }
+  75% {
+    border-bottom-color: $color1;
+  }
+  100% {
+    border-bottom-color: $color2;
+  }
+}
+@keyframes borderLeftLoader {
+  0% {
+    border-left-color: $color2;
+  }
+  75% {
+    border-left-color: $color1;
+  }
+  100% {
+    border-left-color: $color2;
+  }
+}
+.ue-loader-line {
+  width: 100%;
+  height: 3px;
+}
+.ue-loader-line-wrapper {
+  width: 100%;
+  position: relative;
+}
+.ue-loader-line-phase {
+  display: block;
+  float: left;
+  width: 25%;
+  $fadingTime: 1s; //To be perfect this should be 1s
+  border-top: 3px solid #f3f3f3;
+  &--4 {
+    border-radius: 0 50% 50% 0;
+    animation: borderLoader $fadingTime 0.75s linear infinite;
+  }
+  &--3 {
+    animation: borderLoader $fadingTime 0.5s linear infinite;
+  }
+  &--2 {
+    animation: borderLoader $fadingTime 0.25s linear infinite;
+  }
+  &--1 {
+    border-radius: 50% 0 0 50%;
+    animation: borderLoader $fadingTime linear infinite;
+  }
+}
+@keyframes borderLoader {
+  0% {
+    border-color: $color2;
+  }
+  75% {
+    border-color: $color1;
+  }
+  100% {
+    border-color: $color2;
+  }
+}
+
+.ue-loader-field {
+  position: absolute;
+  top: -7px;
+  left: 0;
+  right: 0;
+}

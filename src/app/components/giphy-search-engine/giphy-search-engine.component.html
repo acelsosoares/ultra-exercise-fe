@@ -1,0 +1,42 @@
+<div class="ue-search-engine">
+    <div class="ue-search-engine__header">
+        
+        <!-- Search Input -->
+        <form (ngSubmit)="onSubmitSearchGifsForm()" [formGroup]="form">
+            <label for="ueSearchTermInput" class="form-label sr-only"></label>
+            <div class="input-group">
+                <input type="search" class="form-control" id="ueSearchTermInput" placeholder="Term..." aria-label="Search" formControlName="categoryName">
+                <button type="submit" class="btn btn-primary" id="ueSearchSubmit" [disabled]="!form.valid">GO</button>
+            </div>
+       </form>
+    </div>
+
+    <div class="ue-search-engine__body">
+
+        <!-- Categories Menu -->
+        <ng-container *ngIf="!isLoadingData; else giphyCategoriesLoadingState">
+            <ng-container *ngIf="!giphyCategoriesError; else giphyCategoriesErrorState">
+                <ng-container *ngIf="giphyCategories.length; else giphyCategoriesEmptyState">
+                    <ul class="ue-categories-menu">
+                        <li class="ue-categories-menu__item" *ngFor="let item of giphyCategories">
+                            <a [routerLink]="'/list/'+item.name" routerLinkActive="active">{{ item.name }}</a>
+                        </li>
+                    </ul>
+                </ng-container>
+            </ng-container>
+        </ng-container>
+    </div>
+</div>
+
+
+<ng-template #giphyCategoriesLoadingState>
+    <app-loader [active]="isLoadingData"></app-loader>
+</ng-template>
+
+<ng-template #giphyCategoriesErrorState>
+    Something went wrong, try again later.
+</ng-template>
+
+<ng-template #giphyCategoriesEmptyState>
+    No categories found.
+</ng-template>
