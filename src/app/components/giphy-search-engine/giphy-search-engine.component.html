@@ -19,7 +19,7 @@
                 <ng-container *ngIf="giphyCategories.length; else giphyCategoriesEmptyState">
                     <ul class="ue-categories-menu">
                         <li class="ue-categories-menu__item" *ngFor="let item of giphyCategories">
-                            <a routerLink="" routerLinkActive="active" (click)="onSelectCategory(item.name)">{{ item.name }}</a>
+                            <a [routerLink]="'/list/'+item.name" routerLinkActive="active">{{ item.name }}</a>
                         </li>
                     </ul>
                 </ng-container>

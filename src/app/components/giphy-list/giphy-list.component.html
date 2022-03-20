@@ -15,13 +15,16 @@
                     <ng-container *ngIf="!isLoadingData; else giphyItemsLoadingState">
                         <ng-container *ngIf="!giphyItemsError; else giphyItemsErrorState">
                             <ng-container *ngIf="giphyItems.length; else giphyItemsEmptyState">
-                                <ul class="ue-gifs row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                                    <li class="ue-gifs-item col" *ngFor="let item of giphyItems">
-                                        <img class="ue-gifs-item__img" [src]="item.images.preview_gif.url" [alt]="item.id">
+
+                                <!-- Giphy list -->
+                                <ul class="ue-giphy-list row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                                    <li class="ue-giphy-item col" *ngFor="let item of giphyItems">
+                                        <img class="ue-giphy-item__img" [src]="item.images.preview_gif.url" [alt]="item.id">
                                     </li>
                                 </ul>
                     
-                                <ngb-pagination *ngIf="giphyPagination" [collectionSize]="giphyPagination.total_count" [(page)]="currentPage" [maxSize]="3" [boundaryLinks]="true" (pageChange)="onChangePage()"></ngb-pagination>
+                                <!-- Giphy list - Pagination -->
+                                <ngb-pagination class="ue-giphy-list-pagination" *ngIf="giphyPagination" [collectionSize]="giphyPagination.total_count" [(page)]="currentPage" [maxSize]="3" [boundaryLinks]="true" (pageChange)="onChangePage()"></ngb-pagination>
                             </ng-container>
                         </ng-container>
                     </ng-container>

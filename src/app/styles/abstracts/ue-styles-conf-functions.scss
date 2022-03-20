@@ -1,0 +1,69 @@
+///////////////////////////
+// Functions
+//-------------------------
+@mixin border-radius ($radius_tl: 5px, $radius_tr: 5px, $radius_br: 5px, $radius_bl: 5px) {
+    border-radius: $radius_tl $radius_tr $radius_br $radius_bl;
+    -webkit-border-radius: $radius_tl $radius_tr $radius_br $radius_bl;
+    -moz-border-radius: $radius_tl $radius_tr $radius_br $radius_bl;
+}
+@mixin top-border-radius ($radius: 5px) {
+    @include border-radius($radius , $radius , 0 , 0);
+}
+@mixin resetList {
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+@mixin gradient($direction, $list) { 
+    background: -webkit-linear-gradient($direction, $list);
+    background: -moz-linear-gradient($direction, $list);
+    background: -o-linear-gradient($direction, $list);
+    background: linear-gradient($direction, $list);  
+}
+@mixin sprite($pos1:0, $pos2:0) {
+    background: transparent url(/assets/img/ce-sprite.svg) no-repeat scroll $pos1 $pos2;
+    background-size: 259px 268px;
+}
+@mixin forceAspectRatio($width:0, $height:0) {
+    position: relative;
+    overflow: hidden;
+    height: 0;
+    padding-top: $height / $width * 100%;//Default aspect ratio
+    > .ce-img,
+    > iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+@mixin truncateText($fontSize: 14px, $lineHeight: 1.4, $linesToShow: 2, $fadeColor: rgba(255, 255, 255, 1)) {
+    display: block; /* Fallback for non-webkit */
+    position: relative;
+    max-height: $fontSize*$lineHeight*$linesToShow; /* Fallback for non-webkit */
+    overflow: hidden;
+    &:after {
+        content: "";
+        text-align: right;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 50%;
+        height: $fontSize*$lineHeight;
+        background: linear-gradient(to right, rgba(255, 255, 255, 0), $fadeColor 80%);
+    }
+}
+
+@function calculateRem($size) {
+    $remSize: $size / $fontSizeBase;
+    @return #{$remSize}rem;
+}
+
+@mixin fontSize($size) {
+    font-size: $size; //Fallback in px
+    font-size: calculateRem($size);
+}
+@mixin lineHeight($size) {
+    line-height: $size; //Fallback in px
+    line-height: calculateRem($size);
+}

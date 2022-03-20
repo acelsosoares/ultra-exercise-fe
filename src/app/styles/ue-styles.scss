@@ -1,0 +1,67 @@
+// Abstracts/Configs
+@import "abstracts/ue-styles-conf-vars.scss";
+@import "abstracts/ue-styles-conf-functions.scss";
+@import "abstracts/ue-styles-conf-fonts.scss";
+
+// Layout
+@import "layout/ue-styles-header.scss";
+@import "layout/ue-styles-footer.scss";
+@import "layout/ue-styles-main.scss";
+@import "layout/ue-styles-page.scss";
+
+// Components
+@import "components/ue-styles-loader.scss";
+@import "components/ue-styles-buttons.scss";
+
+// Sections
+@import "sections/ue-styles-giphy-list.scss";
+@import "sections/ue-styles-search-engine.scss";
+@import "sections/ue-styles-categories-menu.scss";
+
+
+// General custom elements
+// --------------------------
+html {
+  height: 100%;
+  position: relative;
+  font: "Arial", sans-serif $fontSizeBase normal;
+}
+body {
+  height: 100%;
+  color: $textColorBase;
+}
+
+a,
+.ue-link {
+  color: $linksColor;
+  &--underline {
+    text-decoration: underline !important;
+  }
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+// Grid Layout Customs
+// --------------------------
+@media (min-width: 1350px) {
+  .container {
+      max-width: 1200px;
+  }
+}
+@media (min-width: 1500px) {
+  .container {
+      max-width: 1350px;
+  }
+}
