@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { catchError, Observable, of, Subject, takeUntil } from 'rxjs';
 import { GiphyData, Pagination } from 'src/app/interfaces/giphy.interface';
 import { GiphyApiService } from 'src/app/services/giphy-api.service';
 
@@ -13,6 +13,8 @@ export class GiphyListComponent implements OnInit, OnDestroy {
 
   public giphyItems: GiphyData[] = [];
   public giphyPagination: Pagination | undefined;
+  public giphyItemsError: boolean = false;
+  public isLoadingData: boolean = false;
   public currentPage: number = 1;
   private itemsPerPage: number = 9;
   private selectedCategory: string = 'trending';
@@ -34,11 +36,17 @@ export class GiphyListComponent implements OnInit, OnDestroy {
   }
 
   fetchGifs() {
+    this.isLoadingData = true;
+    this.giphyItemsError = false;
     this.giphyApiService.getGifs(this.selectedCategory, this.itemsPerPage, this.giphyApiService.calculateOffset(this.currentPage, this.itemsPerPage))
     .pipe(takeUntil(this.unsubscribe$))
-    .subscribe(response=>{
+    .subscribe(response => {
       this.giphyItems = response.data;
       this.giphyPagination = response.pagination;
+    }, error => {
+      this.giphyItemsError = true;
+    }, () => {
+      this.isLoadingData = false;
     })
   }
   
