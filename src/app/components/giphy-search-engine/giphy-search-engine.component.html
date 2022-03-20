@@ -1,11 +1,19 @@
 <div class="ue-search-engine">
     <div class="ue-search-engine__header">
-       <form>
-
+        
+        <!-- Search Input -->
+        <form (ngSubmit)="onSubmitSearchGifsForm()" [formGroup]="form">
+            <label for="ueSearchTerm" class="form-label sr-only"></label>
+            <div class="input-group">
+                <input type="search" class="form-control" id="ueSearchTerm" placeholder="Term..." aria-label="Search" formControlName="categoryName">
+                <button type="submit" class="btn btn-primary" [disabled]="!form.valid">GO</button>
+            </div>
        </form>
     </div>
 
     <div class="ue-search-engine__body">
+
+        <!-- Categories Menu -->
         <ng-container *ngIf="!isLoadingData; else giphyCategoriesLoadingState">
             <ng-container *ngIf="!giphyCategoriesError; else giphyCategoriesErrorState">
                 <ng-container *ngIf="giphyCategories.length; else giphyCategoriesEmptyState">

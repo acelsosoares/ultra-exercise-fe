@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { GiphyCategoriesData } from 'src/app/interfaces/giphy.interface';
@@ -15,16 +16,25 @@ export class GiphySearchEngineComponent implements OnInit, OnDestroy {
   public giphyCategoriesError: boolean = false;
   public isLoadingData: boolean = false;
 
+  public form: FormGroup;
   private unsubscribe$: Subject<void> = new Subject<void>();
 
-  constructor(private giphyApiService: GiphyApiService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private giphyApiService: GiphyApiService, private router: Router, private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder) {
+    this.form = this.formBuilder.group({
+      categoryName: ['']
+    })
+  }
 
   ngOnInit(): void {
     this.fetchCategories();
   }
 
   onSelectCategory(catName: string) {
-    this.router.navigate(['../'+catName], { relativeTo: this.activatedRoute })
+    this.router.navigate(['../'+catName], { relativeTo: this.activatedRoute });
+  }
+
+  onSubmitSearchGifsForm() {
+    this.router.navigate(['../'+this.form.get('categoryName')?.value], { relativeTo: this.activatedRoute })
   }
 
   fetchCategories() {

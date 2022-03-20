@@ -24,7 +24,9 @@ export class GiphyListComponent implements OnInit, OnDestroy {
   constructor(private giphyApiService: GiphyApiService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
+    this.activatedRoute.params
+    .pipe(takeUntil(this.unsubscribe$))
+    .subscribe(params => {
       this.selectedCategory = params['categoryName'];
 
       this.fetchGifs();
