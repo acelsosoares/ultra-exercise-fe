@@ -8,9 +8,10 @@ import { GiphyListComponent } from './components/giphy-list/giphy-list.component
 import { NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { GiphySearchEngineComponent } from './components/giphy-search-engine/giphy-search-engine.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoaderComponent } from './components/general/loader/loader.component';
 
 @NgModule({
-  declarations: [AppComponent, GiphyListComponent, GiphySearchEngineComponent],
+  declarations: [AppComponent, GiphyListComponent, GiphySearchEngineComponent, LoaderComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule, NgbPaginationModule, FormsModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],

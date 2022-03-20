@@ -30,7 +30,7 @@
 
 
 <ng-template #giphyCategoriesLoadingState>
-    Loading...
+    <app-loader [active]="isLoadingData"></app-loader>
 </ng-template>
 
 <ng-template #giphyCategoriesErrorState>
