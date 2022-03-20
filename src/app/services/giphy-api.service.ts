@@ -14,11 +14,15 @@ export class GiphyApiService {
 
   constructor(private http: HttpClient) { }
 
-  getSearchGifs(query: string, limit: number = 9) {
-    return this.http.get<GiphyResponse>(`${this.giphyURL}search?api_key=${this.apiKey}&q=${query}&limit=${limit}&offset=0&rating=G&lang=en`);
+  getSearchGifs(query: string, limit: number = 9, offset: number = 0) {
+    return this.http.get<GiphyResponse>(`${this.giphyURL}search?api_key=${this.apiKey}&q=${query}&limit=${limit}&offset=${offset}&rating=G&lang=en`);
   }
 
-  getTrendingGifs(limit: number = 9) {
-    return this.http.get<GiphyResponse>(`${this.giphyURL}trending?api_key=${this.apiKey}&limit=${limit}&rating=G`);
+  getTrendingGifs(limit: number = 9, offset: number = 0) {
+    return this.http.get<GiphyResponse>(`${this.giphyURL}trending?api_key=${this.apiKey}&limit=${limit}&offset=${offset}&rating=G`);
+  }
+
+  calculateOffset(currentPage: number, itemsPerPage: number): number {
+    return (currentPage-1)*itemsPerPage;
   }
 }

@@ -10,6 +10,8 @@
                     <img class="ue-gifs-item__img" [src]="item.images.preview_gif.url" [alt]="item.id">
                 </li>
             </ul>
+
+            <ngb-pagination *ngIf="giphyPagination" [collectionSize]="giphyPagination.total_count" [(page)]="currentPage" [maxSize]="3" [boundaryLinks]="true" (pageChange)="onChangePage()"></ngb-pagination>
         </section>
     </div>
 </div>
