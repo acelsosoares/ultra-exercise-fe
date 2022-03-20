@@ -3,10 +3,10 @@
         
         <!-- Search Input -->
         <form (ngSubmit)="onSubmitSearchGifsForm()" [formGroup]="form">
-            <label for="ueSearchTerm" class="form-label sr-only"></label>
+            <label for="ueSearchTermInput" class="form-label sr-only"></label>
             <div class="input-group">
-                <input type="search" class="form-control" id="ueSearchTerm" placeholder="Term..." aria-label="Search" formControlName="categoryName">
-                <button type="submit" class="btn btn-primary" [disabled]="!form.valid">GO</button>
+                <input type="search" class="form-control" id="ueSearchTermInput" placeholder="Term..." aria-label="Search" formControlName="categoryName">
+                <button type="submit" class="btn btn-primary" id="ueSearchSubmit" [disabled]="!form.valid">GO</button>
             </div>
        </form>
     </div>

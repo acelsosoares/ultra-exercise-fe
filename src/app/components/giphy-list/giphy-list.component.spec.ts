@@ -1,6 +1,9 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { LoaderComponent } from '../general/loader/loader.component';
+import { GiphySearchEngineComponent } from '../giphy-search-engine/giphy-search-engine.component';
 
 import { GiphyListComponent } from './giphy-list.component';
 
@@ -10,8 +13,8 @@ describe('GiphyListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GiphyListComponent ],
-      imports: [HttpClientModule, RouterTestingModule]
+      declarations: [ GiphyListComponent, GiphySearchEngineComponent, LoaderComponent ],
+      imports: [HttpClientModule, RouterTestingModule, ReactiveFormsModule]
     })
     .compileComponents();
   });
@@ -25,4 +28,5 @@ describe('GiphyListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  
 });
