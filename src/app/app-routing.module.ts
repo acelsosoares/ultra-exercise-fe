@@ -4,13 +4,13 @@ import { GiphyListComponent } from './components/giphy-list/giphy-list.component
 
 const routes: Routes = [
   {
-    path: '**',
-    redirectTo: '/trending',
-    pathMatch: 'full'
+    path: 'list/:categoryName',
+    component: GiphyListComponent
   },
   {
-    path: 'trending',
-    component: GiphyListComponent
+    path: '**',
+    redirectTo: '/list/trending',
+    pathMatch: 'full'
   }
 ];
 

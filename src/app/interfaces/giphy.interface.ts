@@ -280,6 +280,35 @@ export interface GiphyData {
     analytics: Analytics;
 }
 
+export interface Subcategory {
+    name: string;
+    name_encoded: string;
+}
+
+export interface Gif {
+    type: string;
+    id: string;
+    url: string;
+    slug: string;
+    bitly_gif_url: string;
+    bitly_url: string;
+    embed_url: string;
+    username: string;
+    source: string;
+    title: string;
+    rating: string;
+    content_url: string;
+    source_tld: string;
+    source_post_url: string;
+    is_sticker: number;
+    import_datetime: string;
+    trending_datetime: string;
+    create_datetime: string;
+    update_datetime: string;
+    images: Images;
+    user: User;
+}
+
 export interface Pagination {
     total_count: number;
     count: number;
@@ -292,8 +321,21 @@ export interface Meta {
     response_id: string;
 }
 
+export interface GiphyCategoriesData {
+    name: string;
+    name_encoded: string;
+    subcategories: Subcategory[];
+    gif: Gif;
+}
+
 export interface GiphyResponse {
     data: GiphyData[];
+    pagination: Pagination;
+    meta: Meta;
+}
+
+export interface GiphyCategoriesResponse {
+    data: GiphyCategoriesData[];
     pagination: Pagination;
     meta: Meta;
 }

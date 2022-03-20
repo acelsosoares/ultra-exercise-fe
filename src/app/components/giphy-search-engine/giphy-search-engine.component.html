@@ -1,0 +1,15 @@
+<div class="ue-search-engine">
+    <div class="ue-search-engine__header">
+       <form>
+
+       </form>
+    </div>
+
+    <div class="ue-search-engine__body">
+        <ul class="ue-categories-menu">
+            <li class="ue-categories-menu__item" *ngFor="let item of giphyCategories">
+                <a routerLink="" routerLinkActive="active" (click)="onSelectCategory(item.name)">{{ item.name }}</a>
+            </li>
+        </ul>
+    </div>
+</div>
